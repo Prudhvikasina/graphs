@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import * as Plotly from 'plotly.js';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,17 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'dynamic-plots';
-  // Bar Chart
   graph1 = {
     data: [
       { x: [1, 2, 3], y: [2, 3, 4], type: 'bar' },
     ],
-    layout: {title: 'Bar Plot',
+    layout: {title: 'Bar Plot', 
     width: 700,
-  
     height: 500}
   };
-  // Line chart
   graph2 = {
     data: [
       { x: [1, 2, 3, 4, 5], y: [1, 4, 9, 4, 1], type: 'scatter' },
@@ -25,16 +22,12 @@ export class AppComponent {
       { x: [1, 2, 3, 4, 5], y: [1, 2, 4, 5, 6], type: 'scatter' },
     ],
     layout: {title: 'Scatter Plot',
-  
-
     width: 700,
-  
     height: 500}
   };
   graph3 = {
     data: [
       {
-
             values: [16, 15, 12, 6, 5, 4, 42],
           
             labels: ['US', 'China', 'European Union', 'Russian Federation', 'Brazil', 'India', 'Rest of World' ],
@@ -159,23 +152,16 @@ export class AppComponent {
     y: [10, 11, 12, 13],
   
     mode: 'markers',
-  
     marker: {
-  
       size: [40, 60, 80, 100]
   
     }}],
     
     layout: [{title: 'Marker Size',
-
     showlegend: true,
-   
-
     width: 500,
-  
     height: 500}]
   };
-  
   graph6= {
     data: [ { type: "indicator",
     mode: "number+delta",
@@ -193,4 +179,55 @@ export class AppComponent {
 
  layout :[{ width: 600, height: 450, xaxis: { range: [0, 62]}}]  
  }
+
+ private trace1 = {
+  x:['2020-10-04', '2021-11-04', '2023-12-04'],
+  y: [90, 40, 60],
+  type: 'scatter'
+};
+
+data = [this.trace1];
+ layout = {
+  title: 'Scroll and Zoom',
+  showlegend: false
+};
+
+config={
+  scrollZoom: true
+}
+
+Quick ={
+  data : [{
+    x:['trees', 'flowers', 'hedges'],
+    y: [150, 5, 40],
+    type: 'bar'}],
+   layout : {
+    title: 'Remove Modebar Buttons',
+    showlegend: false},
+    config:{
+      modeBarButtonsToRemove: ['toImage']
+    }
+}
+trace = {
+  x:['Zebras', 'Lions', 'Pelicans'],
+  y: [90, 40, 60],
+  type: 'bar',
+  name: 'New York Zoo'
+}
+trace2 = {
+  x:['Zebras', 'Lions', 'Pelicans'],
+  y: [10, 80, 45],
+  type: 'bar',
+  name: 'San Francisco Zoo'
+}
+  chart={
+ data : [this.trace,this.trace2],
+ layout : {
+  title: 'Hide the Modebar',
+  showlegend: true
+},
+config:{
+  displayModeBar:false
+}
+}
 }
